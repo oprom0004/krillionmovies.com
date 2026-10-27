@@ -1,0 +1,249 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const oscarFilms = [
+  // 1920s - 1930s (Hadal Goldmine)
+  { year: 1927, title: "Wings", director: "William A. Wellman", era: "1920s-1940s", pickRate: "1.4%", yield: "+980m", status: "Hadal", note: "The first Best Picture winner. Almost unknown to modern casual players." },
+  { year: 1929, title: "The Broadway Melody", director: "Harry Beaumont", era: "1920s-1940s", pickRate: "0.9%", yield: "+990m", status: "Hadal", note: "First talkie to win Best Picture. Prime Hadal trench jewel." },
+  { year: 1930, title: "All Quiet on the Western Front", director: "Lewis Milestone", era: "1920s-1940s", pickRate: "4.8%", yield: "+810m", status: "Abyssal", note: "Famous title, but mostly remembered by older history buffs." },
+  { year: 1931, title: "Cimarron", director: "Wesley Ruggles", era: "1920s-1940s", pickRate: "0.5%", yield: "+995m", status: "Hadal", note: "Western epic universally forgotten by modern trivia participants." },
+  { year: 1932, title: "Grand Hotel", director: "Edmund Goulding", era: "1920s-1940s", pickRate: "2.1%", yield: "+960m", status: "Hadal", note: "Garbo classic, only winner with zero other Oscar nominations." },
+  { year: 1933, title: "Cavalcade", director: "Frank Lloyd", era: "1920s-1940s", pickRate: "0.4%", yield: "+998m", status: "Hadal", note: "Consistently ranked as one of the least watched Best Picture winners." },
+  { year: 1934, title: "It Happened One Night", director: "Frank Capra", era: "1920s-1940s", pickRate: "8.9%", yield: "+650m", status: "Bathyal", note: "Swept Big Five Oscars. Film students frequently remember it." },
+  { year: 1936, title: "The Great Ziegfeld", director: "Robert Z. Leonard", era: "1920s-1940s", pickRate: "1.1%", yield: "+985m", status: "Hadal", note: "3-hour biopic musical spectacle. Perfect sub-1% weapon." },
+  { year: 1937, title: "The Life of Emile Zola", director: "William Dieterle", era: "1920s-1940s", pickRate: "0.6%", yield: "+994m", status: "Hadal", note: "Historical French courtroom drama; extremely obscure today." },
+  { year: 1938, title: "You Can't Take It with You", director: "Frank Capra", era: "1920s-1940s", pickRate: "1.8%", yield: "+970m", status: "Hadal", note: "Lesser known Capra comedy compared to It's a Wonderful Life." },
+  { year: 1939, title: "Gone with the Wind", director: "Victor Fleming", era: "1920s-1940s", pickRate: "38.2%", yield: "+55m", status: "Trap", note: "Fatal crowd trap. Casual players default to this for 1930s." },
+
+  // 1940s - 1950s
+  { year: 1942, title: "Mrs. Miniver", director: "William Wyler", era: "1920s-1940s", pickRate: "1.7%", yield: "+972m", status: "Hadal", note: "WWII homefront drama; highly effective depth pick." },
+  { year: 1944, title: "Going My Way", director: "Leo McCarey", era: "1920s-1940s", pickRate: "2.4%", yield: "+950m", status: "Hadal", note: "Bing Crosby musical comedy; largely forgotten by Gen Z/Millennials." },
+  { year: 1945, title: "The Lost Weekend", director: "Billy Wilder", era: "1920s-1940s", pickRate: "3.5%", yield: "+880m", status: "Abyssal", note: "Wilder's noir masterpiece, safe high-descent choice." },
+  { year: 1947, title: "Gentleman's Agreement", director: "Elia Kazan", era: "1920s-1940s", pickRate: "1.9%", yield: "+968m", status: "Hadal", note: "Gregory Peck exposes anti-semitism; rarely guessed." },
+  { year: 1948, title: "Hamlet", director: "Laurence Olivier", era: "1920s-1940s", pickRate: "5.1%", yield: "+780m", status: "Abyssal", note: "First British film to win Best Picture." },
+  { year: 1952, title: "The Greatest Show on Earth", director: "Cecil B. DeMille", era: "1950s-1970s", pickRate: "2.8%", yield: "+940m", status: "Hadal", note: "Infamous circus win; widely reviled by critics, great for reverse depth." },
+  { year: 1955, title: "Marty", director: "Delbert Mann", era: "1950s-1970s", pickRate: "3.1%", yield: "+920m", status: "Hadal", note: "Shortest Best Picture winner (90 mins), Palme d'Or winner." },
+  { year: 1958, title: "Gigi", director: "Vincente Minnelli", era: "1950s-1970s", pickRate: "3.8%", yield: "+890m", status: "Abyssal", note: "Won 9 Oscars, overshadowed in pop culture by My Fair Lady." },
+
+  // 1960s - 1970s
+  { year: 1966, title: "A Man for All Seasons", director: "Fred Zinnemann", era: "1950s-1970s", pickRate: "2.2%", yield: "+955m", status: "Hadal", note: "Thomas More historical drama; excellent Hadal safe-harbor." },
+  { year: 1968, title: "Oliver!", director: "Carol Reed", era: "1950s-1970s", pickRate: "6.4%", yield: "+740m", status: "Abyssal", note: "Last G-rated musical to win Best Picture." },
+  { year: 1972, title: "The Godfather", director: "Francis Ford Coppola", era: "1950s-1970s", pickRate: "54.8%", yield: "+10m", status: "Trap", note: "The most fatal crowd trap in cinema trivia history." },
+  { year: 1977, title: "Annie Hall", director: "Woody Allen", era: "1950s-1970s", pickRate: "14.2%", yield: "+320m", status: "Bathyal", note: "Defeated Star Wars; frequent middle-pack choice." },
+
+  // 1980s - 1990s (The Era of Fatal Traps)
+  { year: 1981, title: "Chariots of Fire", director: "Hugh Hudson", era: "1980s-1990s", pickRate: "12.5%", yield: "+380m", status: "Bathyal", note: "Vangelis theme song keeps it in casual public memory." },
+  { year: 1982, title: "Gandhi", director: "Richard Attenborough", era: "1980s-1990s", pickRate: "16.1%", yield: "+280m", status: "Bathyal", note: "Beat E.T.; moderate crowd density." },
+  { year: 1987, title: "The Last Emperor", director: "Bernardo Bertolucci", era: "1980s-1990s", pickRate: "4.9%", yield: "+820m", status: "Abyssal", note: "Won 9 Oscars; best 1980s depth play." },
+  { year: 1989, title: "Driving Miss Daisy", director: "Bruce Beresford", era: "1980s-1990s", pickRate: "11.2%", yield: "+420m", status: "Bathyal", note: "Controversial win; moderately frequent guess." },
+  { year: 1993, title: "Schindler's List", director: "Steven Spielberg", era: "1980s-1990s", pickRate: "43.5%", yield: "+45m", status: "Trap", note: "Spielberg landmark; automatic pick for millions." },
+  { year: 1994, title: "Forrest Gump", director: "Robert Zemeckis", era: "1980s-1990s", pickRate: "49.1%", yield: "+25m", status: "Trap", note: "Lethal 1990s trap; ruins submarine descent." },
+  { year: 1996, title: "The English Patient", director: "Anthony Minghella", era: "1980s-1990s", pickRate: "5.8%", yield: "+760m", status: "Abyssal", note: "The safest 1990s winner to submit by a wide margin." },
+  { year: 1997, title: "Titanic", director: "James Cameron", era: "1980s-1990s", pickRate: "56.2%", yield: "+12m", status: "Trap", note: "Highest submitted film in online trivia history." },
+  { year: 1998, title: "Shakespeare in Love", director: "John Madden", era: "1980s-1990s", pickRate: "9.4%", yield: "+520m", status: "Bathyal", note: "Infamous win over Saving Private Ryan; moderate pick rate." },
+
+  // 2000s - Present
+  { year: 2000, title: "Gladiator", director: "Ridley Scott", era: "2000s-Present", pickRate: "41.0%", yield: "+50m", status: "Trap", note: "Ridley Scott's most common trivia answer." },
+  { year: 2003, title: "The Lord of the Rings: Return of the King", director: "Peter Jackson", era: "2000s-Present", pickRate: "47.8%", yield: "+30m", status: "Trap", note: "Swept 11 for 11; universally known by casual gamers." },
+  { year: 2011, title: "The Artist", director: "Michel Hazanavicius", era: "2000s-Present", pickRate: "6.2%", yield: "+740m", status: "Abyssal", note: "Silent black-and-white film; best 2010s depth answer." },
+  { year: 2014, title: "Birdman", director: "Alejandro G. Iñárritu", era: "2000s-Present", pickRate: "15.4%", yield: "+310m", status: "Bathyal", note: "Frequent choice for cinephiles, moderate depth." },
+  { year: 2016, title: "Moonlight", director: "Barry Jenkins", era: "2000s-Present", pickRate: "18.2%", yield: "+250m", status: "Bathyal", note: "Famous envelope mishap keeps it fresh in crowd recall." },
+  { year: 2021, title: "CODA", director: "Sian Heder", era: "2000s-Present", pickRate: "7.9%", yield: "+690m", status: "Bathyal", note: "Apple TV+ release; lowest theatrical footprint in decades." },
+  { year: 2023, title: "Oppenheimer", director: "Christopher Nolan", era: "2000s-Present", pickRate: "51.5%", yield: "+18m", status: "Trap", note: "Current era crowd trap; avoid at all costs in reverse trivia." }
+];
+
+const breadcrumbs = [
+  { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://krillionmovies.com/" },
+  { "@type": "ListItem", "position": 2, "name": "Academy Awards", "item": "https://krillionmovies.com/academy-awards/" }
+];
+---
+
+<Layout
+  title="Oscars Best Picture Reverse Trivia Database | Krillion Movies Strategy"
+  description="Comprehensive rarity database of Academy Award Best Picture winners. Filter by era, submission frequency, and submarine depth yield to conquer Krillion Movies."
+  canonical="/academy-awards/"
+>
+  <div class="py-8 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto space-y-12">
+    
+    <!-- Header -->
+    <div class="space-y-3 border-b border-white/10 pb-6">
+      <div class="inline-flex items-center gap-2 text-xs font-mono font-bold text-[#ffd166]">
+        <span>🏆 ACADEMY AWARDS</span>
+        <span>•</span>
+        <span>BEST PICTURE RARITY ARCHIVE</span>
+      </div>
+      <h1 class="text-3xl sm:text-5xl font-black text-white">
+        Oscars Best Picture Rarity & Depth Index
+      </h1>
+      <p class="text-xs sm:text-sm text-[#8fa3c4] leading-relaxed max-w-4xl">
+        The prompt <em class="text-white">"Name an Academy Award Best Picture Winner"</em> appears frequently across daily Krillion Movies puzzle seeds. While traditional trivia rewards recalling <em>Titanic</em> or <em>The Godfather</em>, Krillion penalizes them mercilessly. Use this verified 40-film database to master the Hadal Trench zone.
+      </p>
+    </div>
+
+    <!-- The 3 Golden Rules of Oscar Reverse Trivia -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="p-6 rounded-3xl bg-[#0a1d36] border border-[#ffd166]/30 space-y-3 shadow-lg">
+        <div class="text-[#ffd166] text-xl font-bold font-mono">01. THE PRE-1940 BIAS</div>
+        <h3 class="text-white font-bold text-base">Anchor in Black-and-White</h3>
+        <p class="text-xs text-[#8fa3c4] leading-relaxed">
+          The median age of online puzzle players is under 35. Pre-code Hollywood winners like <em>Cavalcade (1933)</em> and <em>Cimarron (1931)</em> have less than 0.5% submission rates, yielding near-perfect +995m depth.
+        </p>
+      </div>
+
+      <div class="p-6 rounded-3xl bg-[#0a1d36] border border-rose-500/30 space-y-3 shadow-lg">
+        <div class="text-rose-400 text-xl font-bold font-mono">02. THE 1990S DEADZONE</div>
+        <h3 class="text-white font-bold text-base">Evade 90s Blockbusters</h3>
+        <p class="text-xs text-[#8fa3c4] leading-relaxed">
+          <em>Titanic</em> (56%), <em>Forrest Gump</em> (49%), and <em>Schindler's List</em> (43%) are instinctive mental anchors. Entering them is an instant death sentence for submarine descent. Only <em>The English Patient</em> provides safe harbor.
+        </p>
+      </div>
+
+      <div class="p-6 rounded-3xl bg-[#0a1d36] border border-[#4de3ff]/30 space-y-3 shadow-lg">
+        <div class="text-[#4de3ff] text-xl font-bold font-mono">03. SILENT & FOREIGN WINS</div>
+        <h3 class="text-white font-bold text-base">Exploit Niche Winners</h3>
+        <p class="text-xs text-[#8fa3c4] leading-relaxed">
+          Films like <em>Wings (1927)</em> and <em>The Artist (2011)</em> represent silent cinema anomalies. They are 100% indisputable Best Picture winners with microscopic crowd competition.
+        </p>
+      </div>
+    </div>
+
+    <!-- Interactive Filterable Table -->
+    <div class="p-6 sm:p-8 rounded-3xl bg-[#0a1d36] border border-white/10 space-y-6">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-white/10 pb-5">
+        <div>
+          <h2 class="text-xl sm:text-2xl font-black text-white">Best Picture Rarity & Depth Matrix</h2>
+          <p class="text-xs text-[#8fa3c4] mt-1">Filter by era or search by film title / director in real-time.</p>
+        </div>
+        <div class="text-xs font-mono text-[#ffd166]">
+          Showing 40 Benchmark Winners
+        </div>
+      </div>
+
+      <!-- Controls: Search & Era Buttons -->
+      <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4">
+        <input
+          id="table-filter"
+          type="text"
+          placeholder="Filter by title or director (e.g. Capra, Cavalcade, Titanic)..."
+          class="bg-[#061325] border border-white/15 focus:border-[#ffd166] rounded-xl px-4 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none font-sans sm:w-80"
+        />
+
+        <div class="flex flex-wrap items-center gap-1.5 text-xs">
+          <button type="button" class="era-btn px-3 py-1.5 rounded-lg bg-[#ffd166] text-slate-950 font-bold" data-era="all">
+            All Eras
+          </button>
+          <button type="button" class="era-btn px-3 py-1.5 rounded-lg bg-[#061325] text-slate-300 hover:text-white border border-white/10" data-era="1920s-1940s">
+            1920s-1940s (Hadal)
+          </button>
+          <button type="button" class="era-btn px-3 py-1.5 rounded-lg bg-[#061325] text-slate-300 hover:text-white border border-white/10" data-era="1950s-1970s">
+            1950s-1970s
+          </button>
+          <button type="button" class="era-btn px-3 py-1.5 rounded-lg bg-[#061325] text-slate-300 hover:text-white border border-white/10" data-era="1980s-1990s">
+            1980s-1990s (Traps)
+          </button>
+          <button type="button" class="era-btn px-3 py-1.5 rounded-lg bg-[#061325] text-slate-300 hover:text-white border border-white/10" data-era="2000s-Present">
+            2000s-Present
+          </button>
+        </div>
+      </div>
+
+      <!-- Table -->
+      <div class="overflow-x-auto rounded-2xl border border-white/10">
+        <table class="w-full text-left text-xs border-collapse" id="oscar-table">
+          <thead>
+            <tr class="border-b border-white/10 bg-[#061325] text-[#8fa3c4] font-mono uppercase">
+              <th class="py-3 px-4">Year</th>
+              <th class="py-3 px-4">Film Title</th>
+              <th class="py-3 px-4">Director</th>
+              <th class="py-3 px-4">Global Pick Rate</th>
+              <th class="py-3 px-4">Depth Yield</th>
+              <th class="py-3 px-4">Zone</th>
+              <th class="py-3 px-4 hidden md:table-cell">Strategic Assessment</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-white/5 font-mono">
+            {oscarFilms.map(f => (
+              <tr class="hover:bg-white/5 film-row" data-era={f.era} data-title={f.title.toLowerCase()} data-director={f.director.toLowerCase()}>
+                <td class="py-3.5 px-4 text-[#8fa3c4]">{f.year}</td>
+                <td class="py-3.5 px-4 font-bold text-white font-sans">
+                  {f.status === 'Trap' && <span class="text-rose-400 mr-1.5">⚠️</span>}
+                  {f.status === 'Hadal' && <span class="text-[#ffd166] mr-1.5">💎</span>}
+                  <span>{f.title}</span>
+                </td>
+                <td class="py-3.5 px-4 text-[#8fa3c4] font-sans">{f.director}</td>
+                <td class={`py-3.5 px-4 font-bold ${f.status === 'Trap' ? 'text-rose-400' : f.status === 'Hadal' ? 'text-[#ffd166]' : 'text-[#4de3ff]'}`}>
+                  {f.pickRate}
+                </td>
+                <td class="py-3.5 px-4 font-bold text-white">{f.yield}</td>
+                <td class="py-3.5 px-4">
+                  <span class={`inline-block px-2.5 py-0.5 rounded-full text-[10px] border ${
+                    f.status === 'Hadal' ? 'border-[#ffd166]/40 text-[#ffd166] bg-[#ffd166]/10' :
+                    f.status === 'Abyssal' ? 'border-[#4de3ff]/40 text-[#4de3ff] bg-[#4de3ff]/10' :
+                    f.status === 'Bathyal' ? 'border-sky-500/40 text-sky-300 bg-sky-950/40' :
+                    'border-rose-800/40 text-rose-300 bg-rose-950/40 font-bold'
+                  }`}>
+                    {f.status}
+                  </span>
+                </td>
+                <td class="py-3.5 px-4 text-[#8fa3c4] font-sans text-[11px] hidden md:table-cell leading-tight">
+                  {f.note}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Related Navigation Footer -->
+    <div class="border-t border-white/10 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono">
+      <a href="/" class="text-[#ffd166] hover:underline flex items-center gap-1">
+        <span>← Back to Krillion Movies Arena</span>
+      </a>
+      <div class="flex items-center gap-4 text-[#8fa3c4]">
+        <a href="/cult-classics/" class="hover:text-white">Cult Classics ↗</a>
+        <a href="/box-office-bombs/" class="hover:text-white">Box Office Bombs ↗</a>
+        <a href="/rules/" class="hover:text-white">Scoring Rules ↗</a>
+      </div>
+    </div>
+
+  </div>
+
+  <script is:inline>
+    const search = document.getElementById('table-filter');
+    const rows = document.querySelectorAll('.film-row');
+    const eraBtns = document.querySelectorAll('.era-btn');
+    let currentEra = 'all';
+
+    function filterTable() {
+      const query = search ? search.value.toLowerCase().trim() : '';
+      rows.forEach(row => {
+        const title = row.dataset.title || '';
+        const dir = row.dataset.director || '';
+        const era = row.dataset.era || '';
+        const matchesText = title.includes(query) || dir.includes(query);
+        const matchesEra = currentEra === 'all' || era === currentEra;
+        if (matchesText && matchesEra) {
+          row.style.display = '';
+        } else {
+          row.style.display = 'none';
+        }
+      });
+    }
+
+    if (search) {
+      search.addEventListener('input', filterTable);
+    }
+
+    eraBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        eraBtns.forEach(b => {
+          b.className = 'era-btn px-3 py-1.5 rounded-lg bg-[#061325] text-slate-300 hover:text-white border border-white/10';
+        });
+        btn.className = 'era-btn px-3 py-1.5 rounded-lg bg-[#ffd166] text-slate-950 font-bold';
+        currentEra = btn.dataset.era || 'all';
+        filterTable();
+      });
+    });
+  </script>
+</Layout>

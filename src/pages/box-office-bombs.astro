@@ -1,0 +1,119 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const bombs = [
+  { title: "Cutthroat Island", year: 1995, director: "Renny Harlin", budget: "$98M", gross: "$10M", loss: "-$88M", pickRate: "0.4%", depth: "+996m", note: "Guinness record holder for biggest box office loss of its era. Bankrupted Carolco." },
+  { title: "Heaven's Gate", year: 1980, director: "Michael Cimino", budget: "$44M", gross: "$3.5M", loss: "-$40M", pickRate: "0.8%", depth: "+992m", note: "Cimino's bloated 219-minute Western that bankrupted United Artists." },
+  { title: "Ishtar", year: 1987, director: "Elaine May", budget: "$51M", gross: "$14M", loss: "-$37M", pickRate: "0.5%", depth: "+995m", note: "Warren Beatty & Dustin Hoffman singing off-key in the Sahara." },
+  { title: "John Carter", year: 2012, director: "Andrew Stanton", budget: "$263M", gross: "$73M", loss: "-$200M", pickRate: "2.1%", depth: "+960m", note: "Massive Disney sci-fi disaster; excellent weapon for $200M+ budget prompts." },
+  { title: "The Adventures of Pluto Nash", year: 2002, director: "Ron Underwood", budget: "$100M", gross: "$7.1M", loss: "-$93M", pickRate: "0.6%", depth: "+994m", note: "Eddie Murphy sci-fi comedy; less than 1 in 150 players ever remember it." },
+  { title: "Town & Country", year: 2001, director: "Peter Chelsom", budget: "$90M", gross: "$10.4M", loss: "-$80M", pickRate: "0.2%", depth: "+999m", note: "Warren Beatty comedy stuck in 3 years of reshoots; ultimate obscure flop." },
+  { title: "The 13th Warrior", year: 1999, director: "John McTiernan", budget: "$160M", gross: "$61M", loss: "-$100M", pickRate: "1.2%", depth: "+982m", note: "Antonio Banderas Viking epic; highly effective for 1990s action prompts." },
+  { title: "Gigli", year: 2003, director: "Martin Brest", budget: "$75M", gross: "$7.2M", loss: "-$68M", pickRate: "1.5%", depth: "+975m", note: "Bennifer romantic comedy disaster; swept Razzie Awards." },
+  { title: "Stealth", year: 2005, director: "Rob Cohen", budget: "$135M", gross: "$79M", loss: "-$56M", pickRate: "0.9%", depth: "+990m", note: "Sentient AI stealth fighter jet; ideal for high-tech thriller prompts." },
+  { title: "The Lone Ranger", year: 2013, director: "Gore Verbinski", budget: "$225M", gross: "$89M", loss: "-$136M", pickRate: "3.4%", depth: "+910m", note: "Johnny Depp Western reboot; much rarer than Pirates of the Caribbean." },
+  { title: "Speed Racer", year: 2008, director: "The Wachowskis", budget: "$120M", gross: "$93M", loss: "-$27M", pickRate: "2.8%", depth: "+935m", note: "Wachowskis psychedelic anime adaptation; safe alternative to The Matrix." },
+  { title: "Titan A.E.", year: 2000, director: "Don Bluth / Gary Goldman", budget: "$90M", gross: "$36M", loss: "-$54M", pickRate: "0.7%", depth: "+993m", note: "Post-apocalyptic animation; bankrupted Fox Animation Studios." },
+  { title: "Treasure Planet", year: 2002, director: "Ron Clements / John Musker", budget: "$140M", gross: "$110M", loss: "-$30M", pickRate: "4.1%", depth: "+885m", note: "Disney sci-fi steampunk; safest answer for Disney animated prompts." },
+  { title: "Waterworld", year: 1995, director: "Kevin Reynolds", budget: "$175M", gross: "$88M", loss: "-$87M", pickRate: "9.2%", depth: "+620m", note: "Infamous floating atoll production; moderate trivia recall." },
+  { title: "Catwoman", year: 2004, director: "Pitof", budget: "$100M", gross: "$82M", loss: "-$18M", pickRate: "5.8%", depth: "+760m", note: "Halle Berry DC disaster; far safer than Batman or Superman." },
+  { title: "Final Fantasy: The Spirits Within", year: 2001, director: "Hironobu Sakaguchi", budget: "$137M", gross: "$85M", loss: "-$52M", pickRate: "1.1%", depth: "+985m", note: "Photorealistic CGI pioneer that folded Square Pictures." }
+];
+
+const breadcrumbs = [
+  { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://krillionmovies.com/" },
+  { "@type": "ListItem", "position": 2, "name": "Box Office Bombs", "item": "https://krillionmovies.com/box-office-bombs/" }
+];
+---
+
+<Layout
+  title="Box Office Bombs Reverse Trivia Guide | Krillion Movies"
+  description="Master the paradox of high-budget Hollywood box office flops in Krillion Movies. Turn forgotten financial disasters into 7,000m Hadal trench victories."
+  canonical="/box-office-bombs/"
+>
+  <div class="py-8 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto space-y-12">
+    
+    <!-- Header -->
+    <div class="space-y-3 border-b border-white/10 pb-6">
+      <div class="inline-flex items-center gap-2 text-xs font-mono font-bold text-[#ffd166]">
+        <span>💣 HOLLYWOOD FLOP ARSENAL</span>
+        <span>•</span>
+        <span>HIGH BUDGET DISASTER VAULT</span>
+      </div>
+      <h1 class="text-3xl sm:text-5xl font-black text-white">
+        Legendary Box Office Bombs: The Reverse Trivia Paradox
+      </h1>
+      <p class="text-xs sm:text-sm text-[#8fa3c4] leading-relaxed max-w-4xl">
+        In standard movie trivia, you think of blockbusters like <em>Avengers: Endgame</em>, <em>Avatar</em>, or <em>Jurassic Park</em>. But in Krillion Movies, when prompted with <em>"A film with a budget over $100M"</em> or <em>"A 1990s action movie"</em>, blockbusters trigger lethal crowd traps. The ultimate tactical counter-measure is remembering <strong>catastrophic box office bombs</strong>: films that spent $100M+ but were wiped from public memory after theatrical ruin.
+      </p>
+    </div>
+
+    <!-- The Box Office Paradox Breakdown -->
+    <div class="p-6 sm:p-8 rounded-3xl bg-[#0a1d36] border border-[#ffd166]/30 shadow-xl space-y-4">
+      <div class="flex items-center gap-2 text-xs font-mono text-[#ffd166] uppercase font-bold">
+        <span>Strategic Philosophy</span>
+      </div>
+      <h2 class="text-xl sm:text-2xl font-bold text-white">Why Financial Disasters Yield 1,000m Hadal Trench Depth</h2>
+      <p class="text-xs sm:text-sm text-[#8fa3c4] leading-relaxed">
+        Movie studio marketing spends hundreds of millions ensuring the public forgets embarrassing write-downs. While everybody remembers <em>Gladiator</em> or <em>Pirates of the Caribbean</em>, nobody outside film buffs recalls <em>Cutthroat Island</em>, <em>Town & Country</em>, or <em>Pluto Nash</em>. Yet under trivia verification rules, they are 100% legitimate, major-studio theatrical releases with A-list actors and nine-figure budgets.
+      </p>
+    </div>
+
+    <!-- Interactive Bombs Table -->
+    <div class="p-6 sm:p-8 rounded-3xl bg-[#0a1d36] border border-white/10 space-y-6">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-white/10 pb-5">
+        <div>
+          <h3 class="text-xl sm:text-2xl font-black text-white">Hollywood Financial Disasters Index</h3>
+          <p class="text-xs text-[#8fa3c4] mt-1">Verified budgets, theatrical losses, and Krillion Movies depth yields.</p>
+        </div>
+        <div class="text-xs font-mono text-[#ffd166]">
+          16 Legendary Flops Indexed
+        </div>
+      </div>
+
+      <div class="overflow-x-auto rounded-2xl border border-white/10">
+        <table class="w-full text-left text-xs border-collapse">
+          <thead>
+            <tr class="border-b border-white/10 bg-[#061325] text-[#8fa3c4] font-mono uppercase">
+              <th class="py-3 px-4">Film Title</th>
+              <th class="py-3 px-4">Year</th>
+              <th class="py-3 px-4">Production Budget</th>
+              <th class="py-3 px-4">Est. Loss</th>
+              <th class="py-3 px-4">Global Pick Rate</th>
+              <th class="py-3 px-4">Depth Yield</th>
+              <th class="py-3 px-4">Trench Assessment</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-white/5 font-mono">
+            {bombs.map(b => (
+              <tr class="hover:bg-white/5">
+                <td class="py-3.5 px-4 font-bold text-white font-sans">
+                  <span>💣 {b.title}</span>
+                </td>
+                <td class="py-3.5 px-4 text-[#8fa3c4]">{b.year}</td>
+                <td class="py-3.5 px-4 text-[#4de3ff]">{b.budget}</td>
+                <td class="py-3.5 px-4 text-rose-400">{b.loss}</td>
+                <td class="py-3.5 px-4 font-bold text-[#ffd166]">{b.pickRate}</td>
+                <td class="py-3.5 px-4 font-bold text-white">{b.depth}</td>
+                <td class="py-3.5 px-4 text-[#8fa3c4] font-sans text-[11px] leading-tight max-w-xs">{b.note}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Navigation Footer -->
+    <div class="border-t border-white/10 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono">
+      <a href="/" class="text-[#ffd166] hover:underline flex items-center gap-1">
+        <span>← Back to Krillion Movies Arena</span>
+      </a>
+      <div class="flex items-center gap-4 text-[#8fa3c4]">
+        <a href="/academy-awards/" class="hover:text-white">Oscars Database ↗</a>
+        <a href="/cult-classics/" class="hover:text-white">Cult Classics ↗</a>
+        <a href="/rules/" class="hover:text-white">Scoring Rules ↗</a>
+      </div>
+    </div>
+
+  </div>
+</Layout>

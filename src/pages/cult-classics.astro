@@ -1,0 +1,198 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const cultFilms = [
+  // Sci-Fi & Surrealism
+  { title: "Stalker", year: 1979, director: "Andrei Tarkovsky", category: "Sci-Fi & Surrealism", pickRate: "0.6%", depth: "+994m", zone: "Hadal", promptMatch: "1970s Sci-Fi / Philosophical Cinema", note: "Soviet masterpiece; impenetrable to 99.4% of general trivia players." },
+  { title: "Solaris", year: 1972, director: "Andrei Tarkovsky", category: "Sci-Fi & Surrealism", pickRate: "1.1%", depth: "+985m", zone: "Hadal", promptMatch: "Space Exploration / Adaptation of a Novel", note: "Cannes Grand Prix winner; far safer than 2001: A Space Odyssey." },
+  { title: "Fantastic Planet (La Planète sauvage)", year: 1973, director: "René Laloux", category: "Sci-Fi & Surrealism", pickRate: "0.4%", depth: "+998m", zone: "Hadal", promptMatch: "Animated Feature / Dystopian Fiction", note: "Surreal animated allegory; virtually unknown to casual English players." },
+  { title: "The Holy Mountain", year: 1973, director: "Alejandro Jodorowsky", category: "Sci-Fi & Surrealism", pickRate: "0.5%", depth: "+996m", zone: "Hadal", promptMatch: "Surrealism / 1970s Counter-Culture", note: "Psychedelic spiritual quest funded by John Lennon." },
+  { title: "THX 1138", year: 1971, director: "George Lucas", category: "Sci-Fi & Surrealism", pickRate: "1.8%", depth: "+970m", zone: "Hadal", note: "George Lucas's debut feature. Never entered by Star Wars fans.", promptMatch: "Films Directed by George Lucas / Dystopian" },
+  { title: "Alphaville", year: 1965, director: "Jean-Luc Godard", category: "Sci-Fi & Surrealism", pickRate: "0.8%", depth: "+992m", zone: "Hadal", promptMatch: "French Cinema / Cyberpunk / Dystopian", note: "Golden Bear winner; merges French noir with dystopian computing." },
+
+  // French New Wave & European Arthouse
+  { title: "Breathless (À bout de souffle)", year: 1960, director: "Jean-Luc Godard", category: "French New Wave", pickRate: "3.2%", depth: "+920m", zone: "Hadal", promptMatch: "1960s Crime / French New Wave / Jump Cuts", note: "Film history staple, but casually ignored in speed-trivia." },
+  { title: "The 400 Blows (Les Quatre Cents Coups)", year: 1959, director: "François Truffaut", category: "French New Wave", pickRate: "2.8%", depth: "+940m", zone: "Hadal", promptMatch: "Coming-of-Age / Cannes Best Director", note: "Cannes triumph that launched the New Wave." },
+  { title: "Cleo from 5 to 7", year: 1962, director: "Agnès Varda", category: "French New Wave", pickRate: "1.2%", depth: "+982m", zone: "Hadal", promptMatch: "Female Director / Real-Time Narrative", note: "Left Bank icon; god-tier answer for female auteur prompts." },
+  { title: "Persona", year: 1966, director: "Ingmar Bergman", category: "French New Wave", pickRate: "2.5%", depth: "+950m", zone: "Hadal", promptMatch: "Swedish Cinema / Psychological Drama", note: "Bibi Andersson and Liv Ullmann duality classic." },
+  { title: "The Seventh Seal", year: 1957, director: "Ingmar Bergman", category: "French New Wave", pickRate: "6.8%", depth: "+720m", zone: "Abyssal", promptMatch: "Death Personified / Medieval Setting", note: "Iconic chess-with-death scene increases crowd recall slightly." },
+  { title: "Aguirre, the Wrath of God", year: 1972, director: "Werner Herzog", category: "French New Wave", pickRate: "1.9%", depth: "+968m", zone: "Hadal", promptMatch: "Historical Conquistadors / Werner Herzog", note: "Klaus Kinski descent into Amazonian madness." },
+  { title: "Belle de Jour", year: 1967, director: "Luis Buñuel", category: "French New Wave", pickRate: "1.4%", depth: "+978m", zone: "Hadal", promptMatch: "Venice Golden Lion / Catherine Deneuve", note: "Venice top prize; prime pick for 1960s European prompts." },
+
+  // Midnight Cult & Body Horror
+  { title: "Eraserhead", year: 1977, director: "David Lynch", category: "Midnight Horror", pickRate: "3.9%", depth: "+900m", zone: "Hadal", promptMatch: "David Lynch / 1970s Horror / Surrealism", note: "David Lynch's debut; far rarer than Mulholland Drive or Blue Velvet." },
+  { title: "Suspiria", year: 1977, director: "Dario Argento", category: "Midnight Horror", pickRate: "4.5%", depth: "+870m", zone: "Abyssal", promptMatch: "Italian Giallo / Supernatural Witchcraft", note: "Technicolor horror landmark with Goblin soundtrack." },
+  { title: "Tetsuo: The Iron Man", year: 1989, director: "Shinya Tsukamoto", category: "Midnight Horror", pickRate: "0.3%", depth: "+998m", zone: "Hadal", promptMatch: "Cyberpunk / Body Horror / Japanese Cinema", note: "Extreme biomechanical cult classic; absolute 1,000m Hadal gold." },
+  { title: "Carnival of Souls", year: 1962, director: "Herk Harvey", category: "Midnight Horror", pickRate: "0.7%", depth: "+993m", zone: "Hadal", promptMatch: "Independent Horror / Black-and-White", note: "Micro-budget cult classic inspired David Lynch and George Romero." },
+  { title: "Videodrome", year: 1983, director: "David Cronenberg", category: "Midnight Horror", pickRate: "2.9%", depth: "+945m", zone: "Hadal", promptMatch: "David Cronenberg / 1980s Body Horror", note: "James Woods & Debbie Harry; safer than The Fly." },
+  { title: "Hausu (House)", year: 1977, director: "Nobuhiko Obayashi", category: "Midnight Horror", pickRate: "1.0%", depth: "+988m", zone: "Hadal", promptMatch: "Haunted House / Japanese Arthouse", note: "Bizarre psychedelic horror comedy with piano eating girls." }
+];
+
+const breadcrumbs = [
+  { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://krillionmovies.com/" },
+  { "@type": "ListItem", "position": 2, "name": "Cult Classics", "item": "https://krillionmovies.com/cult-classics/" }
+];
+---
+
+<Layout
+  title="Cult Classics & Arthouse Reverse Trivia Guide | Krillion Movies"
+  description="Master cult cinema, European arthouse, and French New Wave in Krillion Movies. Sub-1% submission rates to plunge your submarine to 7,000m Hadal depths."
+  canonical="/cult-classics/"
+>
+  <div class="py-8 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto space-y-12">
+    
+    <!-- Header -->
+    <div class="space-y-3 border-b border-white/10 pb-6">
+      <div class="inline-flex items-center gap-2 text-xs font-mono font-bold text-[#4de3ff]">
+        <span>📼 CULT & ARTHOUSE VAULT</span>
+        <span>•</span>
+        <span>SUB-1% OBSCURITY CATALOG</span>
+      </div>
+      <h1 class="text-3xl sm:text-5xl font-black text-white">
+        Cult Classics, Arthouse & French New Wave Arsenal
+      </h1>
+      <p class="text-xs sm:text-sm text-[#8fa3c4] leading-relaxed max-w-4xl">
+        In Krillion Movies, mainstream Hollywood knowledge is a liability. Your greatest competitive weapon is an encyclopedic recall of international festival winners, midnight cult films, and avant-garde directors. Because casual players never submit titles like <em>Stalker</em> or <em>Tetsuo</em>, these answers yield steady +980m to +1,000m Hadal trench descents.
+      </p>
+    </div>
+
+    <!-- Interactive Category Selector & Search -->
+    <div class="p-6 sm:p-8 rounded-3xl bg-[#0a1d36] border border-white/10 space-y-6">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-white/10 pb-5">
+        <div>
+          <h2 class="text-xl sm:text-2xl font-black text-white">Cult Rarity & Prompt Matching Index</h2>
+          <p class="text-xs text-[#8fa3c4] mt-1">Filter by movement or search by director / title.</p>
+        </div>
+        <div class="text-xs font-mono text-[#4de3ff]">
+          19 Benchmark Arthouse Deep Cuts
+        </div>
+      </div>
+
+      <!-- Controls -->
+      <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4">
+        <input
+          id="cult-search"
+          type="text"
+          placeholder="Filter by title, director, or keyword (e.g. Tarkovsky, Lynch, Godard)..."
+          class="bg-[#061325] border border-white/15 focus:border-[#4de3ff] rounded-xl px-4 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none font-sans sm:w-80"
+        />
+
+        <div class="flex flex-wrap items-center gap-1.5 text-xs">
+          <button type="button" class="cult-btn px-3 py-1.5 rounded-lg bg-[#4de3ff] text-slate-950 font-bold" data-cat="all">
+            All Arthouse
+          </button>
+          <button type="button" class="cult-btn px-3 py-1.5 rounded-lg bg-[#061325] text-slate-300 hover:text-white border border-white/10" data-cat="Sci-Fi & Surrealism">
+            Sci-Fi & Surrealism
+          </button>
+          <button type="button" class="cult-btn px-3 py-1.5 rounded-lg bg-[#061325] text-slate-300 hover:text-white border border-white/10" data-cat="French New Wave">
+            French New Wave
+          </button>
+          <button type="button" class="cult-btn px-3 py-1.5 rounded-lg bg-[#061325] text-slate-300 hover:text-white border border-white/10" data-cat="Midnight Horror">
+            Midnight Horror
+          </button>
+        </div>
+      </div>
+
+      <!-- Table -->
+      <div class="overflow-x-auto rounded-2xl border border-white/10">
+        <table class="w-full text-left text-xs border-collapse">
+          <thead>
+            <tr class="border-b border-white/10 bg-[#061325] text-[#8fa3c4] font-mono uppercase">
+              <th class="py-3 px-4">Film Title</th>
+              <th class="py-3 px-4">Year</th>
+              <th class="py-3 px-4">Director</th>
+              <th class="py-3 px-4">Best Used For (Prompt)</th>
+              <th class="py-3 px-4">Pick Rate</th>
+              <th class="py-3 px-4">Depth</th>
+              <th class="py-3 px-4">Strategic Note</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-white/5 font-mono">
+            {cultFilms.map(f => (
+              <tr class="hover:bg-white/5 cult-row" data-cat={f.category} data-title={f.title.toLowerCase()} data-director={f.director.toLowerCase()} data-prompt={f.promptMatch.toLowerCase()}>
+                <td class="py-3.5 px-4 font-bold text-white font-sans">
+                  <span>💎 {f.title}</span>
+                </td>
+                <td class="py-3.5 px-4 text-[#8fa3c4]">{f.year}</td>
+                <td class="py-3.5 px-4 text-[#4de3ff] font-sans">{f.director}</td>
+                <td class="py-3.5 px-4 text-slate-300 font-sans text-[11px]">{f.promptMatch}</td>
+                <td class="py-3.5 px-4 font-bold text-[#ffd166]">{f.pickRate}</td>
+                <td class="py-3.5 px-4 font-bold text-white">{f.depth}</td>
+                <td class="py-3.5 px-4 text-[#8fa3c4] font-sans text-[11px] leading-tight max-w-xs">{f.note}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Strategy Deep-Dive Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="p-6 sm:p-8 rounded-3xl bg-[#0a1d36] border border-white/10 space-y-4">
+        <div class="text-[#ffd166] font-mono text-xs font-bold uppercase tracking-wider">Cannes & Venice Exploits</div>
+        <h3 class="text-xl font-bold text-white">Why Film Festival Winners Crush Pop Trivia</h3>
+        <p class="text-xs text-[#8fa3c4] leading-relaxed">
+          Prompts such as <em>"A European dramatic feature"</em> or <em>"A film that won an international award"</em> cause 90% of casual players to submit either American films that played abroad or modern hits like <em>Parasite (2019)</em>. Submitting Golden Lion or Palme d'Or laureates from the 1960s and 70s like <em>The Tree of Wooden Clogs</em> or <em>Belle de Jour</em> yields immediate +990m descent.
+        </p>
+      </div>
+
+      <div class="p-6 sm:p-8 rounded-3xl bg-[#0a1d36] border border-white/10 space-y-4">
+        <div class="text-[#4de3ff] font-mono text-xs font-bold uppercase tracking-wider">Auteur Traps & Safe Harbors</div>
+        <h3 class="text-xl font-bold text-white">How to Play Prompts on Famous Directors</h3>
+        <p class="text-xs text-[#8fa3c4] leading-relaxed">
+          When asked for a film directed by George Lucas, 98% of people say <em>Star Wars</em> or <em>American Graffiti</em>. Submit <em>THX 1138</em>. When asked for Stanley Kubrick, avoid <em>The Shining</em> or <em>2001</em>; submit <em>Killer's Kiss (1955)</em> or <em>Paths of Glory (1957)</em>. Auteur early features provide maximum Hadal safety.
+        </p>
+      </div>
+    </div>
+
+    <!-- Navigation Footer -->
+    <div class="border-t border-white/10 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono">
+      <a href="/" class="text-[#4de3ff] hover:underline flex items-center gap-1">
+        <span>← Back to Krillion Movies Arena</span>
+      </a>
+      <div class="flex items-center gap-4 text-[#8fa3c4]">
+        <a href="/academy-awards/" class="hover:text-white">Oscars Vault ↗</a>
+        <a href="/box-office-bombs/" class="hover:text-white">Box Office Bombs ↗</a>
+        <a href="/rules/" class="hover:text-white">Scoring Rules ↗</a>
+      </div>
+    </div>
+
+  </div>
+
+  <script is:inline>
+    const search = document.getElementById('cult-search');
+    const rows = document.querySelectorAll('.cult-row');
+    const btns = document.querySelectorAll('.cult-btn');
+    let activeCat = 'all';
+
+    function filterCult() {
+      const q = search ? search.value.toLowerCase().trim() : '';
+      rows.forEach(r => {
+        const title = r.dataset.title || '';
+        const dir = r.dataset.director || '';
+        const prompt = r.dataset.prompt || '';
+        const cat = r.dataset.cat || '';
+        const matchesQ = title.includes(q) || dir.includes(q) || prompt.includes(q);
+        const matchesCat = activeCat === 'all' || cat === activeCat;
+        if (matchesQ && matchesCat) {
+          r.style.display = '';
+        } else {
+          r.style.display = 'none';
+        }
+      });
+    }
+
+    if (search) search.addEventListener('input', filterCult);
+
+    btns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        btns.forEach(b => {
+          b.className = 'cult-btn px-3 py-1.5 rounded-lg bg-[#061325] text-slate-300 hover:text-white border border-white/10';
+        });
+        btn.className = 'cult-btn px-3 py-1.5 rounded-lg bg-[#4de3ff] text-slate-950 font-bold';
+        activeCat = btn.dataset.cat || 'all';
+        filterCult();
+      });
+    });
+  </script>
+</Layout>
