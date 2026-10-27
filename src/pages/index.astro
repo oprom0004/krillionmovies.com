@@ -96,12 +96,13 @@ const faqSchema = {
       </div>
 
       <!-- Playable Game Frame -->
-      <div id="km-frame-wrapper" class="relative w-full aspect-[16/10] sm:aspect-[16/9] min-h-[520px] sm:min-h-[640px] rounded-2xl overflow-hidden bg-[#020611] border border-white/5">
+      <div id="km-frame-wrapper" class="relative w-full rounded-2xl overflow-hidden bg-[#020611] border border-white/5" style="height: clamp(660px, 86vh, 860px);">
         <iframe
           id="km-iframe"
-          src="https://www.krillion.org/play/movies/"
+          src="/endless-game/"
           title="Krillion Movies Interactive Arena"
           class="w-full h-full border-0"
+          scrolling="no"
           allow="fullscreen; clipboard-write; autoplay"
           loading="eager"
         ></iframe>
